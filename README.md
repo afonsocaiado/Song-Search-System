@@ -1,5 +1,7 @@
 # PRI-G72
 
+#### *Link to the first draft of the project's pipeline:*  https://lucid.app/lucidchart/8120debe-672b-446b-850f-0dc00cfbed3a/edit?viewport_loc=-261%2C-10%2C2764%2C1478%2C0_0&invitationId=inv_81f1f824-45fc-41bc-93f6-3d738190272d
+
 # Project Rules
 
 ## I. Introduction 
