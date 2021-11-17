@@ -1,13 +1,16 @@
 import pandas as pd
 
-def extend(data):
+if __name__ == '__main__':
+    
+    data = pd.read_csv('dataset/clean.csv')
+    
     final = data.copy()
     
-    for indexM, rowM in data.iterrows():
+    for indexM, rowM in final.iterrows():
         if (rowM['Artist'] == 'Beyoncé'):
-            artist = pd.read_csv('../dataset/Song-Lyrics-Dataset/csv/Beyonce.csv')
+            artist = pd.read_csv('dataset/Song-Lyrics-Dataset/csv/Beyonce.csv')
         else:
-            artist = pd.read_csv('../dataset/Song-Lyrics-Dataset/csv/' + rowM['Artist'].replace(" ","") + '.csv')
+            artist = pd.read_csv('dataset/Song-Lyrics-Dataset/csv/' + rowM['Artist'].replace(" ","") + '.csv')
         
         for indexA, rowA in artist.iterrows():
             if rowM['Album'] == rowA['Album'] and rowM['Title'] != rowA['Title']:
@@ -18,4 +21,6 @@ def extend(data):
                                'Lyric' : rowA['Lyric'],
                                'Top Genre' : rowM['Top Genre']}, ignore_index=True)
     
-    return final
+    final.to_csv('dataset/data.csv', index=False)
+    
+    print('Extended the data and wrote it to data.csv\n')
