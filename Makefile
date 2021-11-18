@@ -15,5 +15,5 @@ combine:
 	python3 src/combine.py
 
 # Delete all temporary files
-clean:
-	rm dataset/clean.csv dataset/combined.csv
+#clean:
+#	rm dataset/clean.csv dataset/combined.csv
