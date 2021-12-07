@@ -20,6 +20,8 @@ if __name__ == '__main__':
                                'Date' : rowA['Date'],
                                'Lyric' : rowA['Lyric'],
                                'Top Genre' : rowM['Top Genre']}, ignore_index=True)
+                
+    final.drop_duplicates(subset = ['Artist', 'Title', 'Album'], inplace = True)
     
     final.to_csv('dataset/data.csv', index=False)
     
