@@ -1,7 +1,7 @@
 {
 	"add-field-type": [
         {
-            "name":"songTitle",
+            "name":"Text",
             "class":"solr.TextField",
             "indexAnalyzer":{
                 "tokenizer":{
@@ -21,17 +21,63 @@
                     {"class":"solr.LowerCaseFilterFactory"}
                 ]
             }
+        },
+        {
+            "name":"LyricText",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"Date",
+            "class":"solr.DateRangeField"
         }
     ],
     "add-field": [
         {
             "name": "Artist",
-            "type": "songTitle",
+            "type": "Text",
             "indexed": true
         },
         {
             "name": "Title",
-            "type": "songTitle",
+            "type": "Text",
+            "indexed": true
+        },
+        {
+            "name": "Album",
+            "type": "Text",
+            "indexed": true
+        },
+        {
+            "name": "Date",
+            "type": "Date",
+            "indexed": true
+        },
+        {
+            "name": "Lyric",
+            "type": "LyricText",
+            "indexed": true
+        },
+        {
+            "name": "Top Genre",
+            "type": "Text",
             "indexed": true
         }
     ]
