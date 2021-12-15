@@ -23,6 +23,8 @@ if __name__ == '__main__':
                 
     final.drop_duplicates(subset = ['Artist', 'Title', 'Album'], inplace = True)
     
+    final['id'] = range(1, len(final) + 1)
+    
     final.to_csv('dataset/data.csv', index=False)
     
     print('Extended the data and wrote it to data.csv\n')
