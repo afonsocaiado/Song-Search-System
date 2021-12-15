@@ -32,7 +32,6 @@
                 },
                 "filters":[
                     {"class":"solr.StopFilterFactory", "words":"stopwords.txt", "ignoreCase":"true"},    
-                    {"class":"solr.PorterStemFilterFactory", "preserveOriginal":true},
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"}
                 ]
