@@ -12,11 +12,11 @@ if __name__ == '__main__':
     
     decade2000 = pd.read_csv('dataset/Decades/csv/2000.csv')
     
-    decade2000 = decade2000.rename(columns={'title' : 'Title', 'artist' : 'Artist', 'top genre' : 'Top Genre'})
+    decade2000 = decade2000.rename(columns={'title' : 'Title', 'artist' : 'Artist', 'top genre' : 'Top Genre', 'year' : 'Year', 'bpm' : 'Beats Per Minute (BPM)', 'nrgy' : 'Energy', 'dnce' : 'Danceability', 'dB' : 'Loudness (dB)', 'live' : 'Liveness', 'val' : 'Valence', 'dur' : 'Length (Duration)', 'acous' : 'Acousticness', 'spch' : 'Speechiness', 'pop' : 'Popularity'})
     
     decade2010 = pd.read_csv('dataset/Decades/csv/2010.csv')
     
-    decade2010 = decade2010.rename(columns={'title' : 'Title', 'artist' : 'Artist', 'top genre' : 'Top Genre'})
+    decade2010 = decade2010.rename(columns={'title' : 'Title', 'artist' : 'Artist', 'top genre' : 'Top Genre', 'year' : 'Year', 'bpm' : 'Beats Per Minute (BPM)', 'nrgy' : 'Energy', 'dnce' : 'Danceability', 'dB' : 'Loudness (dB)', 'live' : 'Liveness', 'val' : 'Valence', 'dur' : 'Length (Duration)', 'acous' : 'Acousticness', 'spch' : 'Speechiness', 'pop' : 'Popularity'})
     
     musicGenres = pd.concat([decade2000, decade2010, spotify2000])
     
