@@ -14,7 +14,7 @@ playlist_link = "https://open.spotify.com/playlist/0jDWpd5lTinKFpdTVKHnWk?si=b9d
 playlist_URI = playlist_link.split("/")[-1].split("?")[0]
 track_uris = [x["track"]["uri"] for x in sp.playlist_tracks(playlist_URI)["items"]]
 
-column_names = ['title','artist','album','popularity']
+column_names = ['Title','Artist','Album','Popularity']
 data = pd.DataFrame(columns=column_names)
 
 results = sp.playlist_tracks(playlist_URI)
@@ -31,6 +31,10 @@ while results['next']:
         track_name = track["track"]["name"]
         # track_genre = track["track"]["genres"]
         # track_date = track["track"]["date"]
+
+        track_audio_features = sp.audio_features(track_uri)[0]
+        track_bpm = track_audio_features["tempo"]
+        print(track_name)
         
         #Main Artist
         artist_uri = track["track"]["artists"][0]["uri"]
@@ -48,7 +52,9 @@ while results['next']:
         #Popularity of the track
         track_pop = track["track"]["popularity"]
 
-        data.iloc[n]=[track_name,artist_name,album,track_pop]
+        info = {'Title': track_name, 'Artist': artist_name, 'Album': album, 'Popularity': track_pop}
+
+        data = data.append(info, ignore_index=True)
 
     results = sp.next(results)
 
