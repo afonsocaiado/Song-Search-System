@@ -1,5 +1,6 @@
 import pandas as pd
 import glob
+import spotipy
 
 if __name__ == '__main__':
 
@@ -7,6 +8,14 @@ if __name__ == '__main__':
     all_filenames = [i for i in glob.glob(f"dataset/Song-Lyrics-Dataset/csv/*{file_extension}")]
     
     combinedLyrics = pd.concat([pd.read_csv(f) for f in all_filenames])
+
+    for row in combinedLyrics.iterrows():
+        artist = row['Artist']
+        results = spotify.search(q='artist:' + artist, type='artist')
+        items = results['artists']['items']
+        if len(items) > 0:
+            artist = items[0]
+            print(artist['name'], artist['images'][0]['url'])
     
     spotify2000 = pd.read_csv('dataset/Spotify-2000/csv/Spotify-2000.csv')
     
