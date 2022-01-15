@@ -14,45 +14,55 @@ playlist_link = "https://open.spotify.com/playlist/0jDWpd5lTinKFpdTVKHnWk?si=b9d
 playlist_URI = playlist_link.split("/")[-1].split("?")[0]
 track_uris = [x["track"]["uri"] for x in sp.playlist_tracks(playlist_URI)["items"]]
 
-column_names = ['Title','Artist','Album','Popularity']
+column_names = ['Title','Artist','Album','Date','Top Genre','Duration','Popularity','BPM','Danceability','Energy','Valence']
 data = pd.DataFrame(columns=column_names)
 
 results = sp.playlist_tracks(playlist_URI)
 
-n = 0
-
 while results['next']:
 
     for track in results['items']:
+
         #URI
         track_uri = track["track"]["uri"]
-        
-        #Track name
-        track_name = track["track"]["name"]
-        # track_genre = track["track"]["genres"]
-        # track_date = track["track"]["date"]
 
-        track_audio_features = sp.audio_features(track_uri)[0]
-        track_bpm = track_audio_features["tempo"]
-        print(track_name)
-        
-        #Main Artist
+        #Track's main artist
         artist_uri = track["track"]["artists"][0]["uri"]
         artist_info = sp.artist(artist_uri)
         
-        #Name, popularity, genre
         artist_name = track["track"]["artists"][0]["name"]
         artist_pop = artist_info["popularity"]
         artist_genres = artist_info["genres"]
-        # print(artist_genres)
+        artist_top_genre = artist_info["genres"][0]
         
+        #Track name
+        track_name = track["track"]["name"]
+
         #Album
-        album = track["track"]["album"]["name"]
+        track_album = track["track"]["album"]["name"]
+
+        #Track date
+        track_date = track["track"]["album"]["release_date"]
+
+        #Track duration
+        track_duration_ms = track["track"]["duration_ms"]
+        track_duration_s = track_duration_ms * 0.001
+
+        #Track explicit
+        track_explicit = track["track"]["explicit"]
         
         #Popularity of the track
         track_pop = track["track"]["popularity"]
 
-        info = {'Title': track_name, 'Artist': artist_name, 'Album': album, 'Popularity': track_pop}
+        #Track audio features, bpm, energy, etc
+        track_audio_features = sp.audio_features(track_uri)[0]
+
+        track_bpm = track_audio_features["tempo"]
+        track_danceability = track_audio_features["danceability"]
+        track_energy = track_audio_features["energy"]
+        track_valence = track_audio_features["valence"]
+
+        info = {'Artist': artist_name, 'Title': track_name, 'Album': track_album, 'Date': track_date, 'Top Genre': artist_top_genre, 'Duration': track_duration_s, 'Popularity': track_pop, 'BPM': track_bpm, 'Danceability': track_danceability, 'Energy': track_energy, 'Valence': track_valence}
 
         data = data.append(info, ignore_index=True)
 
