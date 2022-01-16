@@ -19,9 +19,13 @@ data = pd.DataFrame(columns=column_names)
 
 results = sp.playlist_tracks(playlist_URI)
 
+n = 1
+
 while results['next']:
 
     for track in results['items']:
+
+        print(n)
 
         #URI
         track_uri = track["track"]["uri"]
@@ -31,9 +35,20 @@ while results['next']:
         artist_info = sp.artist(artist_uri)
         
         artist_name = track["track"]["artists"][0]["name"]
+
+        print(artist_name)
+
         artist_pop = artist_info["popularity"]
         artist_genres = artist_info["genres"]
-        artist_top_genre = artist_info["genres"][0]
+
+        print(artist_genres)
+
+        if len(artist_genres) > 1:
+            artist_top_genre = artist_info["genres"][0]
+        else:
+            artist_top_genre = ""
+
+        print(artist_top_genre)
         
         #Track name
         track_name = track["track"]["name"]
@@ -65,6 +80,8 @@ while results['next']:
         info = {'Artist': artist_name, 'Title': track_name, 'Album': track_album, 'Date': track_date, 'Top Genre': artist_top_genre, 'Duration': track_duration_s, 'Popularity': track_pop, 'BPM': track_bpm, 'Danceability': track_danceability, 'Energy': track_energy, 'Valence': track_valence}
 
         data = data.append(info, ignore_index=True)
+
+        n += 1
 
     results = sp.next(results)
 
