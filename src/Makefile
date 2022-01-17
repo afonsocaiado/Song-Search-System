@@ -13,7 +13,3 @@ clean_data: combine
 # Combine all data to get a single file
 combine: 
 	python3 combine.py
-
-# Delete all temporary files
-#clean:
-#	rm dataset/clean.csv dataset/combined.csv
