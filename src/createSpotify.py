@@ -14,7 +14,7 @@ playlist_link = "https://open.spotify.com/playlist/0jDWpd5lTinKFpdTVKHnWk?si=b9d
 playlist_URI = playlist_link.split("/")[-1].split("?")[0]
 track_uris = [x["track"]["uri"] for x in sp.playlist_tracks(playlist_URI)["items"]]
 
-column_names = ['Title','Artist','Album','Date','Top Genre','Duration','Popularity','BPM','Danceability','Energy','Valence']
+column_names = ['Title','Artist','Top Genre','Duration','Popularity','BPM','Danceability','Energy','Valence']
 data = pd.DataFrame(columns=column_names)
 
 results = sp.playlist_tracks(playlist_URI)
@@ -52,12 +52,6 @@ while results['next']:
             index = track_name.find(word)
             track_name = track_name[:index-1]
 
-        #Album
-        track_album = track["track"]["album"]["name"]
-
-        #Track date
-        track_date = track["track"]["album"]["release_date"]
-
         #Track duration
         track_duration_ms = track["track"]["duration_ms"]
         track_duration_s = track_duration_ms * 0.001
@@ -76,7 +70,7 @@ while results['next']:
         track_energy = track_audio_features["energy"]
         track_valence = track_audio_features["valence"]
 
-        info = {'Artist': artist_name, 'Title': track_name, 'Album': track_album, 'Date': track_date, 'Top Genre': artist_top_genre, 'Duration': track_duration_s, 'Popularity': track_pop, 'BPM': track_bpm, 'Danceability': track_danceability, 'Energy': track_energy, 'Valence': track_valence}
+        info = {'Artist': artist_name, 'Title': track_name, 'Top Genre': artist_top_genre, 'Duration': track_duration_s, 'Popularity': track_pop, 'BPM': track_bpm, 'Danceability': track_danceability, 'Energy': track_energy, 'Valence': track_valence}
 
         data = data.append(info, ignore_index=True)
 
@@ -84,4 +78,4 @@ while results['next']:
 
     results = sp.next(results)
 
-data.to_csv("spotifytest.csv", index=False)
+data.to_csv("spotifyData.csv", index=False)
