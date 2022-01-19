@@ -6,8 +6,8 @@ import json
 import requests
 import pandas as pd
 
-QRELS_FILE = "queries/query3/qrels/boost.txt"
-QUERY_URL = "http://localhost:8983/solr/music/select?indent=true&q.op=OR&q=Title%3Amiss%5E2%20Lyric%3Amiss%20Lyric%3Aloved%20Lyric%3Aliked"
+QRELS_FILE = "queries/m3/query1/qrels/schema.txt"
+QUERY_URL = "http://localhost:8983/solr/music/select?indent=true&q.op=OR&q=Lyric%3Asad"
 
 # Read qrels to extract relevant documents
 relevant = list(map(lambda el: el.strip(), open(QRELS_FILE).readlines()))
