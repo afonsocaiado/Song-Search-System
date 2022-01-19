@@ -11,7 +11,9 @@
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
                     {"class":"solr.EdgeNGramFilterFactory", "minGramSize":"3", "maxGramSize":"7", "preserveOriginal":true},
-                    {"class":"solr.ManagedStopFilterFactory", "managed":"english"}
+                    {"class":"solr.ManagedStopFilterFactory", "managed":"english"},
+                    {"class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms.txt"},
+                    {"class":"solr.FlattenGraphFilterFactory"}
                 ]
             },
             "queryAnalyzer":{
