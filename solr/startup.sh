@@ -14,6 +14,11 @@ sleep 5
 echo "--- curl schema"
 curl -X POST -H 'Content-type:application/json' --data-binary @/data/schema.json http://localhost:8983/solr/music/schema
 
+# Adding stopwords for stopword filter
+echo "--- stopwords"
+curl -X PUT -H 'Content-type:application/json' --data-binary '["songs"]' "http://localhost:8983/solr/music/schema/analysis/stopwords/english"
+curl -X PUT -H 'Content-type:application/json' --data-binary '["song"]' "http://localhost:8983/solr/music/schema/analysis/stopwords/english"
+
 # Populate collection
 echo -e "\n--- curl music_lyrics data"
 curl -X POST -H 'Content-type:application/csv' --data-binary @/data/music_lyrics.csv "http://localhost:8983/solr/music/update?commit=true"
