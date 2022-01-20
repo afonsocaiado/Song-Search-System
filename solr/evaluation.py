@@ -6,7 +6,7 @@ import json
 import requests
 import pandas as pd
 
-QRELS_FILE = "queries/m3/query1/qrels/schema.txt"
+QRELS_FILE = "queries/m3/query1/qrels/nonschema.txt"
 QUERY_URL = "http://localhost:8983/solr/music/select?indent=true&q.op=OR&q=Lyric%3Asad"
 
 # Read qrels to extract relevant documents
