@@ -1,0 +1,90 @@
+{
+	"add-field-type": [
+        {
+            "name":"Text",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[  
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"},
+                    {"class":"solr.EdgeNGramFilterFactory", "minGramSize":"3", "maxGramSize":"7", "preserveOriginal":true},
+                    {"class":"solr.ManagedStopFilterFactory", "managed":"english"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"LyricText",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[   
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"},
+                    {"class":"solr.KStemFilterFactory"},
+                    {"class":"solr.EdgeNGramFilterFactory", "minGramSize":"3", "maxGramSize":"7", "preserveOriginal":true},
+                    {"class":"solr.ManagedStopFilterFactory", "managed":"english"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"Date",
+            "class":"solr.DateRangeField"
+        }
+    ],
+    "add-field": [
+        {
+            "name": "Artist",
+            "type": "Text",
+            "indexed": true
+        },
+        {
+            "name": "Title",
+            "type": "Text",
+            "indexed": true
+        },
+        {
+            "name": "Album",
+            "type": "Text",
+            "indexed": true
+        },
+        {
+            "name": "Date",
+            "type": "Date",
+            "indexed": true
+        },
+        {
+            "name": "Lyric",
+            "type": "LyricText",
+            "indexed": true
+        },
+        {
+            "name": "Top Genre",
+            "type": "Text",
+            "indexed": true
+        }
+    ]
+}
+
