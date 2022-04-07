@@ -1,3 +1,7 @@
+# Song Information and Lyrics Search System - Information Processing and Retrieval Project
+
+Documentation and description for this project can be found [here](https://github.com/afonsocaiado/Song-Search-System/blob/main/docs/milestone3/report-72.pdf). The file is a school report about the development of the project, written in English.
+
 # Installation and use
 
 1. In this directory, run `make`. The new dataset was created in the `/solr/data` directory.
