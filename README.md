@@ -103,7 +103,7 @@ The system includes data processing pipelines, a Solr-based search engine, and e
    http://localhost:8983/solr/
    ```
 
-## 📚 Usage
+## 📚 How to use
 
 ### Basic Search
 
