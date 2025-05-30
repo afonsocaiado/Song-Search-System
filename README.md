@@ -31,8 +31,7 @@ The system includes data processing pipelines, a Solr-based search engine, and e
 ## 🧑‍💻 Project Team
 
 - Afonso Caiado de Sousa
-- [Team Member 2]
-- [Team Member 3]
+- Jose Miguel Macaes
 
 ## 🔧 Technologies
 
